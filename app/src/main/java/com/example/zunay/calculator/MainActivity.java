@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+
+import static java.lang.Math.sqrt;
 
 public class MainActivity extends Activity {
     private String value1;
@@ -204,5 +207,12 @@ public class MainActivity extends Activity {
             editText.setText("");
         }
         counter++;
+    }
+    public void SQRT(View view){
+        editText= (EditText) findViewById(R.id.editText);
+        value1=editText.getText().toString();
+        result=String.valueOf(sqrt(Double.valueOf(value1)));
+        editText.setText(result);
+        value1=result;
     }
 }

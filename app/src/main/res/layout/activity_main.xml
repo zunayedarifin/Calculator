@@ -45,6 +45,7 @@
             android:id="@+id/buttonSqrt"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:onClick="SQRT"
             android:layout_weight="1"
             android:paddingBottom="0dp"
             android:paddingLeft="0dp"
