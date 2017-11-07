@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Calculator</string>
+    <string name="zero">0</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="add">+</string>
+    <string name="sub">-</string>
+    <string name="three">3</string>
+    <string name="four">4</string>
+    <string name="mul">*</string>
+    <string name="div">/</string>
+    <string name="five">5</string>
+    <string name="six">6</string>
+    <string name="seven">7</string>
+    <string name="eight">8</string>
+    <string name="nine">9</string>
+    <string name="equal">=</string>
+    <string name="history">Memo</string>
+    <string name="dot">.</string>
+    <string name="allClear">AC</string>
+    <string name="_1_x">1/x</string>
+    <string name="x2">x2</string>
+    <string name="sqrt">√</string>
+    <string name="percentage">%</string>
+    <string name="memo_sample">MEMO SAMPLE</string>
+    <string name="layoutMemo">Memo</string>
+    <string name="c">C</string>
+    <string name="write_in_memo">Write result</string>
+</resources>
