@@ -6,5 +6,8 @@
     <color name="orange">#F57C00</color>
     <color name="buttonTextWhite">#FFFFFF</color>
     <color name="buttonBackgroundBlack">#000000</color>
+    <color name="button_pressed">#424242</color>
+    <color name="button_focused">#424242</color>
+    <color name="button_default">#000000</color>
 
 </resources>

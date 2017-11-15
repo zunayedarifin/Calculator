@@ -11,21 +11,20 @@ import java.io.File;
 import java.io.FileReader;
 
 /**
- * Created by zunay on 10/24/2017.
+ * Created by zunayed on 10/24/2017.
  */
 
 public class Memo extends Activity{
     SharedPreferences sharedPref;
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         sharedPref = getSharedPreferences("",MODE_PRIVATE);
 
     }
-    protected void onResume()
-    {
+    @Override
+    protected void onResume() {
         super.onResume();
         setContentView(R.layout.memo);
         TextView textView=(TextView) findViewById(R.id.memo_textView);
@@ -36,7 +35,7 @@ public class Memo extends Activity{
        // textView.setText(highScore);
         StringBuilder stringBuilder=new StringBuilder();
         String eachLine=null;
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Demolist","demo.txt");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Memolist","memo.txt");
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             while ((eachLine=bufferedReader.readLine())!=null)
@@ -49,6 +48,18 @@ public class Memo extends Activity{
             e.printStackTrace();
         }
         textView.setText(stringBuilder.toString());
+    }
+    @Override
+    protected void onStop(){
+        super.onStop();
+    }
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
     }
 
 }

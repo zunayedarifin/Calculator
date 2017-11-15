@@ -18,12 +18,13 @@
     <string name="history">Memo</string>
     <string name="dot">.</string>
     <string name="allClear">AC</string>
-    <string name="_1_x">1/x</string>
-    <string name="x2">x2</string>
+    <string name="_1_x">\u00B9\u002f\u2093</string>
+    <string name="x2">x²</string>
     <string name="sqrt">√</string>
     <string name="percentage">%</string>
     <string name="memo_sample">MEMO SAMPLE</string>
     <string name="layoutMemo">Memo</string>
-    <string name="c">C</string>
+    <string name="c">\u232B</string>
     <string name="write_in_memo">Write result</string>
+    <string name="xy">\u2093\u02b8</string>
 </resources>
