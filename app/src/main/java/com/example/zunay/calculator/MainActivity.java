@@ -11,7 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -27,6 +26,8 @@ public class MainActivity extends Activity {
     private static String value1="0";
     private static String value2="0";
     private static String operator="";
+    private static String pre_oprator="";
+    private String temp_Oprator="";
     private static String result="0";
     private static int counter=0;
     private static int fValue=0;
@@ -45,7 +46,6 @@ public class MainActivity extends Activity {
         super.onResume();
         setContentView(R.layout.activity_main);
         requestPermission();
-
     }
     private void requestPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ) {
@@ -72,6 +72,8 @@ public class MainActivity extends Activity {
         value2="0";
         result="0";
         operator="";
+        pre_oprator="";
+        temp_Oprator="";
         counter=0;
         fValue=0;
         File Root = Environment.getExternalStorageDirectory();
@@ -97,33 +99,30 @@ public class MainActivity extends Activity {
         Intent intent= new Intent(MainActivity.this,Memo.class);
         startActivity(intent);
     }
-    public void calculate(View view) throws IOException {
-
+    public void calculated(View view) throws IOException {
         editText= findViewById(R.id.editText);
         value2=editText.getText().toString();
-
-
         if(operator.equals("+")){
             DecimalFormat df = new DecimalFormat("#.############################################");
             df.setDecimalSeparatorAlwaysShown(false);
             if(!value1.equals("") && !value2.equals(""))
             {
                 result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value1.equals("") && value2.equals(""))
             {
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value2.equals("") && value1.equals(""))
             {
                 value1="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(value2.equals("") && value1.equals(""))
@@ -131,7 +130,7 @@ public class MainActivity extends Activity {
                 value1="0";
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
         }
@@ -143,21 +142,21 @@ public class MainActivity extends Activity {
             if(!value1.equals("") && !value2.equals(""))
             {
                 result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value1.equals("") && value2.equals(""))
             {
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value2.equals("") && value1.equals(""))
             {
                 value1="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(value2.equals("") && value1.equals(""))
@@ -165,7 +164,7 @@ public class MainActivity extends Activity {
                 value1="0";
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
 
@@ -176,21 +175,21 @@ public class MainActivity extends Activity {
             if(!value1.equals("") && !value2.equals(""))
             {
                 result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value1.equals("") && value2.equals(""))
             {
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(!value2.equals("") && value1.equals(""))
             {
                 value1="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(value2.equals("") && value1.equals(""))
@@ -198,7 +197,7 @@ public class MainActivity extends Activity {
                 value1="0";
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
 
@@ -217,7 +216,203 @@ public class MainActivity extends Activity {
                 else
                 {
                     result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
-                    output=value1+operator+value2+"="+result+"\n";
+                    output="\u2022"+value1+operator+value2+"="+result+"\n";
+                }
+
+            }
+            else if(!value1.equals("") && value2.equals(""))
+            {
+                value2="0";
+                result ="Invalid";
+                output="Invalid";
+                value1="0";
+            }
+            else if(!value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+            }
+            else if(value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+            }
+
+        }
+        if(operator.equals("^")){
+            DecimalFormat df = new DecimalFormat("#.############################################");
+            df.setDecimalSeparatorAlwaysShown(false);
+            if(!value1.equals("") && !value2.equals(""))
+            {
+                result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+            }
+            else if(!value1.equals("") && value2.equals(""))
+            {
+                value2="0";
+                result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+            }
+            else if(!value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+            }
+            else if(value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                value2="0";
+                result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+            }
+        }
+        editText.setText(result);
+        value1=result;
+        counter=0;
+        File Root = Environment.getExternalStorageDirectory();
+        File Dir = new File(Root.getAbsolutePath() + "/Memolist");
+        if (!Dir.exists()) {Dir.mkdir();} //Makes the directory if not exists
+        File file = new File(Root.getAbsolutePath() + "/Memolist","memo.txt");
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file, true);
+            fileOutputStream.write(output.getBytes());
+            fileOutputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public void calculate(View view) throws IOException {
+        temp_Oprator=operator;
+    if (!pre_oprator.equals(operator))
+    {
+        operator=pre_oprator;
+    }
+
+        editText= findViewById(R.id.editText);
+        value2=editText.getText().toString();
+        if(operator.equals("+")){
+            DecimalFormat df = new DecimalFormat("#.############################################");
+            df.setDecimalSeparatorAlwaysShown(false);
+            if(!value1.equals("") && !value2.equals(""))
+            {
+                result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(!value1.equals("") && value2.equals(""))
+            {
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(!value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)+Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            pre_oprator="+";
+        }
+
+        else if(operator.equals("-")){
+            DecimalFormat df = new DecimalFormat("#.############################################");
+            df.setDecimalSeparatorAlwaysShown(false);
+
+            if(!value1.equals("") && !value2.equals(""))
+            {
+                result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(!value1.equals("") && value2.equals(""))
+            {
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(!value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)-Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            pre_oprator="-";
+
+        }
+        else if(operator.equals("*")){
+            DecimalFormat df = new DecimalFormat("#.############################################");
+            df.setDecimalSeparatorAlwaysShown(false);
+            if(!value1.equals("") && !value2.equals(""))
+            {
+                result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n"+"\u2022";
+                value1=result;
+            }
+            else if(!value1.equals("") && value2.equals(""))
+            {
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(!value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            else if(value2.equals("") && value1.equals(""))
+            {
+                value1="0";
+                value2="0";
+                result = String.valueOf(df.format(Double.valueOf(value1)*Double.valueOf(value2)));
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
+                value1=result;
+            }
+            pre_oprator="*";
+
+        }
+        else if(operator.equals("/")){
+            DecimalFormat df = new DecimalFormat("#.############################################");
+            df.setDecimalSeparatorAlwaysShown(false);
+            if(!value1.equals("") && !value2.equals(""))
+            {
+                if(value2.equals("0"))
+                {
+                    result ="Invalid";
+                    output="Invalid";
+                    value1="0";
+                }
+                else
+                {
+                    result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
+                    output="\u2022"+value1+operator+value2+"="+result+"\n";
                     value1=result;
                 }
 
@@ -233,7 +428,7 @@ public class MainActivity extends Activity {
             {
                 value1="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
             else if(value2.equals("") && value1.equals(""))
@@ -241,9 +436,10 @@ public class MainActivity extends Activity {
                 value1="0";
                 value2="0";
                 result = String.valueOf(df.format(Double.valueOf(value1)/Double.valueOf(value2)));
-                output=value1+operator+value2+"="+result+"\n";
+                output="\u2022"+value1+operator+value2+"="+result+"\n";
                 value1=result;
             }
+            pre_oprator="/";
 
         }
         else if(operator.equals("^")){
@@ -252,33 +448,37 @@ public class MainActivity extends Activity {
             if(!value1.equals("") && !value2.equals(""))
             {
                 result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
-                output=value1+"powerof("+value2+")="+result+"\n";
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+                value1=result;
             }
             else if(!value1.equals("") && value2.equals(""))
             {
                 value2="0";
                 result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
-                output=value1+"powerof("+value2+")="+result+"\n";
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+                value1=result;
             }
             else if(!value2.equals("") && value1.equals(""))
             {
                 value1="0";
                 result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
-                output=value1+"powerof("+value2+")="+result+"\n";
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+                value1=result;
             }
             else if(value2.equals("") && value1.equals(""))
             {
                 value1="0";
                 value2="0";
                 result = String.valueOf(df.format(pow(Double.valueOf(value1),Double.valueOf(value2))));
-                output=value1+"powerof("+value2+")="+result+"\n";
+                output="\u2022"+value1+"powerof("+value2+")="+result+"\n";
+                value1=result;
             }
+            pre_oprator="^";
         }
-        //operator="";
+        operator=temp_Oprator;
         editText.setText(result);
-        //SharedPreferences.Editor editor = sharedPref.edit();
-        //editor.putString(getString(R.string.write_in_memo),result);
-        //editor.commit();
+        counter=0;
+
 
         File Root = Environment.getExternalStorageDirectory();
         File Dir = new File(Root.getAbsolutePath() + "/Memolist");
@@ -292,10 +492,10 @@ public class MainActivity extends Activity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Toast.makeText(getApplicationContext(),"saved",Toast.LENGTH_SHORT).show();
     }
     public void plus(View view)throws IOException {
         editText=findViewById(R.id.editText);
+        pre_oprator=operator;
         operator="+";
         output="";
         if(counter>=1)
@@ -313,11 +513,12 @@ public class MainActivity extends Activity {
             }
             editText.setText("");
         }
-        counter++;
+        counter=4;
 
     }
     public void minus(View view) throws IOException {
         editText= findViewById(R.id.editText);
+        pre_oprator=operator;
         operator="-";
         if(counter>=1)
         {
@@ -335,10 +536,11 @@ public class MainActivity extends Activity {
             }
             editText.setText("");
         }
-        counter++;
+        counter=4;
     }
     public void multiplication(View view) throws IOException {
         editText= findViewById(R.id.editText);
+        pre_oprator=operator;
         operator="*";
         if(counter>=1)
         {
@@ -357,10 +559,11 @@ public class MainActivity extends Activity {
             }
             editText.setText("");
         }
-        counter++;
+        counter=4;
     }
     public void division(View view) throws IOException {
         editText= findViewById(R.id.editText);
+        pre_oprator=operator;
         operator="/";
         DecimalFormat df = new DecimalFormat("#.############################################");
         df.setDecimalSeparatorAlwaysShown(false);
@@ -378,7 +581,7 @@ public class MainActivity extends Activity {
             }
             editText.setText("");
         }
-        counter++;
+        counter=4;
     }
     public void SQRT(View view) throws IOException {
         operator="√";
@@ -387,7 +590,7 @@ public class MainActivity extends Activity {
         if(!value1.equals("")) {
             result = String.valueOf(sqrt(Double.valueOf(value1)));
             editText.setText(result);
-            output = operator + value1 + "=" + result + "\n";
+            output ="\u2022"+ operator + value1 + "=" + result + "\n";
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsolutePath() + "/Memolist");
             if (!Dir.exists()) {
@@ -402,9 +605,9 @@ public class MainActivity extends Activity {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
             value1 = result;
         }
+        counter=0;
     }
     public void SQUARE(View view) throws IOException {
         editText= findViewById(R.id.editText);
@@ -415,7 +618,7 @@ public class MainActivity extends Activity {
         }
         result=String.valueOf(Double.valueOf(value1)*Double.valueOf(value1));
         editText.setText(result);
-        output=value1+"\u00B2"+"="+result+"\n";
+        output="\u2022"+value1+"\u00B2"+"="+result+"\n";
         File Root = Environment.getExternalStorageDirectory();
         File Dir = new File(Root.getAbsolutePath() + "/Memolist");
         if (!Dir.exists()) {Dir.mkdir();} //Makes the directory if not exists
@@ -428,8 +631,8 @@ public class MainActivity extends Activity {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        Toast.makeText(getApplicationContext(),"saved",Toast.LENGTH_SHORT).show();
         value1=result;
+        counter=0;
     }
     public void INVERSE(View view){
         editText= findViewById(R.id.editText);
@@ -438,6 +641,7 @@ public class MainActivity extends Activity {
         {
             result=String.valueOf(1/(Double.valueOf(value1)));
             editText.setText(result);
+            output="\u2022"+"1/"+value1+"="+result+"\n";
             value1=result;
             File Root = Environment.getExternalStorageDirectory();
             File Dir = new File(Root.getAbsolutePath() + "/Memolist");
@@ -455,9 +659,9 @@ public class MainActivity extends Activity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Toast.makeText(getApplicationContext(), "saved", Toast.LENGTH_SHORT).show();
             value1 = result;
         }
+        counter=0;
 
     }
     public void powerOfX(View view) throws IOException {
@@ -467,7 +671,7 @@ public class MainActivity extends Activity {
         if(counter>=1)
         {
             value2=editText.getText().toString();
-            calculate(view);
+            calculated(view);
         }
         else if(counter<1) {
             value1=editText.getText().toString();//for the first value
@@ -479,8 +683,6 @@ public class MainActivity extends Activity {
         }
         counter++;
     }
-
-
 
     @Override
     protected void onStop(){

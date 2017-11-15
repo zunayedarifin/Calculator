@@ -15,6 +15,7 @@
         android:id="@+id/memo_textView"
         android:textColor="@color/buttonTextWhite"
         android:text="@string/memo_sample"
+        android:paddingLeft="5dp"
         android:textSize="24sp"
         android:background="@color/colorPrimaryDark"/>
 
